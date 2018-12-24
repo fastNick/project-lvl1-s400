@@ -1,10 +1,16 @@
 {
   "name": "project-lvl1-s400",
   "version": "1.0.0",
-  "description": "",
+  "description": "Brain Games project",
+  "keywords": [
+    "Console games",
+    "Brain games"
+  ],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
