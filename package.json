@@ -30,5 +30,8 @@
   },
   "bin": {
     "brain-games": "dist/bin/brain-games.js"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
