@@ -1,7 +1,7 @@
 import { implementGameLogic } from '..';
 import { cons } from 'hexlet-pairs';
 
-import { generateRandomNumber, createQuestionAnswerPair } from '../utils';
+import generateRandomNumber from '../utils';
 
 const isNumberEven = number => number % 2 === 0;
 
@@ -10,13 +10,14 @@ const lowerLimit = 0;
 
 const gameDescription = 'Answer "yes" if number even otherwise answer "no".';
 
-const generateQuestion = () => generateRandomNumber(lowerLimit, upperLimit);
+const getQuestionAnswerPair = () => {
+  const question = generateRandomNumber(lowerLimit, upperLimit);
+  const answer = isNumberEven(question) ? 'yes' : 'no';
+  return cons(question, answer);
+};
 
-export const gameRunner = () => {
-  const questionFunc = () => cons(generateQuestion, null);
-  const answerFunc = question => (isNumberEven(question) ? 'yes' : 'no');
-  const questionAnswerPair = createQuestionAnswerPair(questionFunc, answerFunc);
-  implementGameLogic(questionAnswerPair, gameDescription);
+const gameRunner = () => {
+  implementGameLogic(getQuestionAnswerPair, gameDescription);
 };
 
 export default gameRunner;

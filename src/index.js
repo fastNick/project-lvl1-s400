@@ -1,34 +1,19 @@
 import readlineSync from 'readline-sync';
-import {
-  getQuestion, getAnswer, getPreviousLexicalUnit, getNextLexicalUnit, isLexicalPair,
-} from './utils';
+
+import { car, cdr } from 'hexlet-pairs';
 
 const countOfRounds = 6;
 
-const getLexicalUnit = lexicalPair => (typeof (lexicalPair) === 'function' ? lexicalPair() : lexicalPair);
-
-const getQuestionSentence = (lexicalPair, initialString = '') => {
-  if (lexicalPair === null) {
-    return initialString;
-  }
-  if (!isLexicalPair(lexicalPair)) {
-    return `${initialString} ${getLexicalUnit(lexicalPair)}`;
-  }
-  const lexicalUnit = getLexicalUnit(getPreviousLexicalUnit(lexicalPair));
-
-  return getQuestionSentence(getNextLexicalUnit(lexicalPair), `${initialString} ${lexicalUnit}`);
-};
-
-export const implementGameLogic = (questionAnswerPair, gameDescription) => {
+export const implementGameLogic = (getQuestionAnswerPair, gameDescription) => {
   console.log('\nWelcome to the Brain Games!');
   console.log(gameDescription);
   const userName = readlineSync.question('\nMay I have your name?');
   console.log(`Hello, ${userName}!\n`);
   for (let i = 0; i < countOfRounds; i += 1) {
-    const questionPair = getQuestion(questionAnswerPair)();
-    const question = getQuestionSentence(questionPair);
+    const questionAnswerPair = getQuestionAnswerPair();
+    const question = car(questionAnswerPair);
     console.log(question);
-    const correctAnswer = getAnswer(questionAnswerPair)(question);
+    const correctAnswer = cdr(questionAnswerPair);
     const userAnswer = readlineSync.question('Your answer: ');
     const isAnswerCorrect = String(userAnswer) === String(correctAnswer);
     if (!isAnswerCorrect) {
