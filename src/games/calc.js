@@ -1,4 +1,4 @@
-import { implementGameLogic } from '..';
+import { engine } from '..';
 
 import generateRandomNumber from '../utils';
 
@@ -16,19 +16,24 @@ const getQuestionAnswerPair = () => {
   const mathSign = operationsArray[generateRandomNumber(0,
     operationsArray.length)];
   const secondNumber = generateRandomNumber(lowerLimit, upperLimit);
+  let question;
+  let answer;
   switch (mathSign) {
     case '+':
-      return cons(`Question: ${firstNumber} + ${secondNumber}`, firstNumber + secondNumber);
+      question = `Question: ${firstNumber} + ${secondNumber}`;
+      answer = firstNumber + secondNumber;
+      break;
     case '-':
-      return cons(`Question: ${firstNumber} - ${secondNumber}`, firstNumber - secondNumber);
+      question = `Question: ${firstNumber} - ${secondNumber}`;
+      answer = firstNumber - secondNumber;
+      break;
     default:
-      return cons(`Question: ${firstNumber} * ${secondNumber}`, firstNumber * secondNumber);
+      question = `Question: ${firstNumber} * ${secondNumber}`;
+      answer = firstNumber * secondNumber;
   }
+  return cons(question, String(answer));
 };
 
-const gameRunner = () => {
-  implementGameLogic(getQuestionAnswerPair, gameDescription);
+export default () => {
+  engine(getQuestionAnswerPair, gameDescription);
 };
-
-
-export default gameRunner;

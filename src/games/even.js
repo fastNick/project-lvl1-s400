@@ -1,4 +1,4 @@
-import { implementGameLogic } from '..';
+import { engine } from '..';
 import { cons } from 'hexlet-pairs';
 
 import generateRandomNumber from '../utils';
@@ -16,8 +16,6 @@ const getQuestionAnswerPair = () => {
   return cons(question, answer);
 };
 
-const gameRunner = () => {
-  implementGameLogic(getQuestionAnswerPair, gameDescription);
+export default () => {
+  engine(getQuestionAnswerPair, gameDescription);
 };
-
-export default gameRunner;

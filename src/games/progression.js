@@ -1,4 +1,4 @@
-import { implementGameLogic } from '..';
+import { engine } from '..';
 
 import { cons } from 'hexlet-pairs';
 
@@ -12,9 +12,11 @@ const lowerLimit = -20;
 const upperLimit = 20;
 
 
-const generateArithmeticProgression = (firstNumber, commonDifference) => {
+const generateArithmeticProgression = (length) => {
+  const firstNumber = generateRandomNumber(lowerLimit, upperLimit);
+  const commonDifference = generateRandomNumber(lowerLimit, upperLimit);
   const numbersArray = [];
-  for (let i = 0; i < sequenceLength; i += 1) {
+  for (let i = 0; i < length; i += 1) {
     numbersArray.push(firstNumber + i * commonDifference);
   }
   return numbersArray;
@@ -29,15 +31,13 @@ const getQuestion = (numbersArray, indexInArray) => {
 };
 
 const getQuestionAnswerPair = () => {
-  const firstNumber = generateRandomNumber(lowerLimit, upperLimit);
-  const commonDifference = generateRandomNumber(lowerLimit, upperLimit);
-  const array = generateArithmeticProgression(firstNumber, commonDifference);
-  const hiddenElementPosition = generateRandomNumber(0, array.length);
-  return cons(getQuestion(array, hiddenElementPosition), array[hiddenElementPosition]);
+  const arithmeticProgression = generateArithmeticProgression(sequenceLength);
+  const hiddenElementPosition = generateRandomNumber(0, arithmeticProgression.length);
+  const question = getQuestion(arithmeticProgression, hiddenElementPosition);
+  const answer = String(arithmeticProgression[hiddenElementPosition]);
+  return cons(question, answer);
 };
 
-const gameRunner = () => {
-  implementGameLogic(getQuestionAnswerPair, gameDescription);
+export default () => {
+  engine(getQuestionAnswerPair, gameDescription);
 };
-
-export default gameRunner;

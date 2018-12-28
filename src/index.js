@@ -4,7 +4,7 @@ import { car, cdr } from 'hexlet-pairs';
 
 const countOfRounds = 6;
 
-export const implementGameLogic = (getQuestionAnswerPair, gameDescription) => {
+export const engine = (getQuestionAnswerPair, gameDescription) => {
   console.log('\nWelcome to the Brain Games!');
   console.log(gameDescription);
   const userName = readlineSync.question('\nMay I have your name?');
@@ -15,8 +15,7 @@ export const implementGameLogic = (getQuestionAnswerPair, gameDescription) => {
     console.log(question);
     const correctAnswer = cdr(questionAnswerPair);
     const userAnswer = readlineSync.question('Your answer: ');
-    const isAnswerCorrect = String(userAnswer) === String(correctAnswer);
-    if (!isAnswerCorrect) {
+    if (userAnswer !== correctAnswer) {
       console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`);
       console.log(`Let's try again, ${userName}!`);
       return;
@@ -26,4 +25,4 @@ export const implementGameLogic = (getQuestionAnswerPair, gameDescription) => {
   console.log(` \nCongratulations, ${userName} `);
 };
 
-export default implementGameLogic;
+export default engine;
