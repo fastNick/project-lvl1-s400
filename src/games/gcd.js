@@ -1,4 +1,4 @@
-import { engine } from '..';
+import engine from '..';
 
 import generateRandomNumber from '../utils';
 import { cons } from 'hexlet-pairs';

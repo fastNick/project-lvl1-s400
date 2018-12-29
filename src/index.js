@@ -4,7 +4,7 @@ import { car, cdr } from 'hexlet-pairs';
 
 const countOfRounds = 6;
 
-export const engine = (getQuestionAnswerPair, gameDescription) => {
+const engine = (getQuestionAnswerPair, gameDescription) => {
   console.log('\nWelcome to the Brain Games!');
   console.log(gameDescription);
   const userName = readlineSync.question('\nMay I have your name?');

@@ -1,4 +1,4 @@
-import { engine } from '..';
+import engine from '..';
 
 import { cons } from 'hexlet-pairs';
 
