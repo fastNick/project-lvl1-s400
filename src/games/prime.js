@@ -12,7 +12,7 @@ const isPrime = (number) => {
   for (let i = 2; i <= number / 2; i += 1) {
     if (number % i === 0) return false;
   }
-  return number !== 1 && number !== 0 && number > 0;
+  return number > 1;
 };
 
 const getQuestionAnswerPair = () => {
